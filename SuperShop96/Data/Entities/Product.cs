@@ -1,0 +1,30 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace SuperShop96.Data.Entities
+{
+    public class Product
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
+        public double Price { get; set; }
+
+        [Display(Name = "Image")]
+        public string ImageURL { get; set; }
+
+        [Display(Name = "Last Purchase")]
+        public DateTime LastPurchase { get; set; }
+
+        [Display(Name = "Last Sale")]
+        public DateTime LastSale { get; set; }
+
+        [Display(Name = "Available")]
+        public bool IsAvailable { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = false)]
+        public double Stock { get; set; }
+    }
+}

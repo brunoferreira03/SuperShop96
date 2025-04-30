@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SuperShop96.Data;
 
 namespace SuperShop96
 {
@@ -23,6 +25,10 @@ namespace SuperShop96
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataContext>(cfg =>
+            {
+                cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
+            });
             services.AddControllersWithViews();
         }
 

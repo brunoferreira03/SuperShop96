@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace SuperShop96.Data.Entities
@@ -7,6 +8,8 @@ namespace SuperShop96.Data.Entities
     {
         public int Id { get; set; }
 
+        [Required]
+        [MaxLength(50, ErrorMessage = "This field {0} can only contain up to {1} characters")]
         public string Name { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
@@ -16,10 +19,10 @@ namespace SuperShop96.Data.Entities
         public string ImageURL { get; set; }
 
         [Display(Name = "Last Purchase")]
-        public DateTime LastPurchase { get; set; }
+        public DateTime? LastPurchase { get; set; }
 
         [Display(Name = "Last Sale")]
-        public DateTime LastSale { get; set; }
+        public DateTime? LastSale { get; set; }
 
         [Display(Name = "Available")]
         public bool IsAvailable { get; set; }

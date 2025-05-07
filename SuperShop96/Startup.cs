@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SuperShop96.Data;
+using SuperShop96.Data.Entities.Repositories.Classes;
+using SuperShop96.Data.Entities.Repositories.Interfaces;
 
 namespace SuperShop96
 {
@@ -25,7 +27,7 @@ namespace SuperShop96
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddTransient<SeedDb>();
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddControllersWithViews();
         }

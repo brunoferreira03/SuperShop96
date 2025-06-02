@@ -32,6 +32,7 @@ namespace SuperShop96.Data.Entities
 
         public User User { get; set; }
 
+        [Display(Name = "Image")]
         public string ImageFullPath
         {
             get

@@ -76,6 +76,7 @@ namespace SuperShop96.Controllers
                 product.User = await _userHelper.GetUserByEmailAsync("bff3rreira03@gmail.com");
                 await _productRepository.CreateAsync(product);
                 return RedirectToAction(nameof(Index));
+                
             }
             return View(model);
         }

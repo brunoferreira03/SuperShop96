@@ -1,15 +1,19 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SuperShop96.Data;
 using SuperShop96.Data.Entities;
+using SuperShop96.Models;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace SuperShop96.Helpers
 {
     public class UserHelper : IUserHelper
     {
-        public UserManager<User> _userManager { get; }
-        public UserHelper(UserManager<User> userManager)
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        public UserHelper(UserManager<User> userManager, SignInManager<User> signInManager)
         {
+            _signInManager = signInManager;
             _userManager = userManager;
         }
 
@@ -22,6 +26,16 @@ namespace SuperShop96.Helpers
         public async Task<User> GetUserByEmailAsync(string email)
         {
             return await _userManager.FindByEmailAsync(email);
+        }
+
+        public async Task<SignInResult> LoginAsync(LoginViewModel model)
+        {
+            return await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
+        }
+
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
         }
     }
 }

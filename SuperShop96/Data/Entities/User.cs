@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace SuperShop96.Data.Entities
 {
@@ -7,5 +8,9 @@ namespace SuperShop96.Data.Entities
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        [Display(Name = "Name")]
+        public string FullName => $"{FirstName} {LastName}";
     }
 }
+ 

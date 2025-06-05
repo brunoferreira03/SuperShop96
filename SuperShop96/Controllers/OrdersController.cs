@@ -1,0 +1,23 @@
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SuperShop96.Data.Entities.Repositories;
+using System.Threading.Tasks;
+
+namespace SuperShop96.Controllers
+{
+    [Authorize]
+    public class OrdersController : Controller
+    {
+        private readonly IOrderRepository _orderRepository;
+        public OrdersController(IOrderRepository orderRepository)
+        {
+            _orderRepository = orderRepository;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var model = await _orderRepository.GetOrderAsync(this.User.Identity.Name);
+            return View(model);
+        }
+    }
+}

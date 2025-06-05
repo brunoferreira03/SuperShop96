@@ -7,9 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SuperShop96.Data;
 using SuperShop96.Data.Entities;
+using SuperShop96.Data.Entities.Repositories;
 using SuperShop96.Data.Entities.Repositories.Classes;
 using SuperShop96.Data.Entities.Repositories.Interfaces;
 using SuperShop96.Helpers;
+using System.Collections.Specialized;
 
 namespace SuperShop96
 {
@@ -48,6 +50,7 @@ namespace SuperShop96
             services.AddScoped<IConverterHelper, ConverterHelper>();
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.ConfigureApplicationCookie(cfg =>
             {

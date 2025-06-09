@@ -13,7 +13,7 @@ namespace SuperShop96.Data.Entities
         public string Name { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C2}", ApplyFormatInEditMode = false)]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         [Display(Name = "Image")]
         public string ImageURL { get; set; }

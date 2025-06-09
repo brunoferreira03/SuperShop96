@@ -10,6 +10,8 @@ namespace SuperShop96.Data.Entities.Repositories
     public interface IOrderRepository : IGenericRepository<Order>
     {
         Task<IQueryable<Order>> GetOrderAsync(string Username);
+
+        Task<IQueryable<OrderDetailTemp>> GetDetailsTempAsync(string Username);
     }
 
     public class OrderRepository : GenericRepository<Order>, IOrderRepository
@@ -20,6 +22,20 @@ namespace SuperShop96.Data.Entities.Repositories
         {
             _context = context;
             _userHelper = userHelper;
+        }
+
+        public async Task<IQueryable<OrderDetailTemp>> GetDetailsTempAsync(string Username)
+        {
+            var user = await _userHelper.GetUserByEmailAsync(Username);
+
+            if(user == null)
+            {
+                return null;
+            }
+            return _context.OrderDetailsTemp.
+                Include(p => p.Product).
+                Where(o => o.User == user).
+                OrderBy(o => o.Product.Name);
         }
 
         public async Task<IQueryable<Order>> GetOrderAsync(string Username)

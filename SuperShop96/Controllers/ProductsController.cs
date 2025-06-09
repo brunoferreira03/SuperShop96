@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SuperShop96.Data.Entities;
-using SuperShop96.Data.Entities.Repositories.Interfaces;
+using SuperShop96.Data.Entities.Repositories.Classes;
 using SuperShop96.Helpers;
 using SuperShop96.Models;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SuperShop96.Data.Entities.Repositories.Interfaces;
+using SuperShop96.Data.Entities.Repositories.Classes;
 
 namespace SuperShop96.Controllers.API
 {

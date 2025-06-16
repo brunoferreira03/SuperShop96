@@ -119,6 +119,8 @@ namespace SuperShop96.Controllers
                     }
 
                     var product = _converterHelper.ToProduct(model, path, false);
+
+
                     product.User = await _userHelper.GetUserByEmailAsync(this.User.Identity.Name);
                     await _productRepository.UpdateAsync(product);
                 }

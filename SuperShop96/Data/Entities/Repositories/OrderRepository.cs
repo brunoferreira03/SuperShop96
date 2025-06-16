@@ -19,6 +19,8 @@ namespace SuperShop96.Data.Entities.Repositories
         Task AddItemToOrderAsync(AddItemViewModel model, string Username);
 
         Task ModifyOrderDetailTempQuantityAsync(int id, double quantity);
+
+        Task DeleteDetailTempAsync(int id);
     }
 
     public class OrderRepository : GenericRepository<Order>, IOrderRepository
@@ -66,6 +68,15 @@ namespace SuperShop96.Data.Entities.Repositories
                 _context.OrderDetailsTemp.Update(orderDetailTemp);
             }
 
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteDetailTempAsync(int id)
+        {
+            var orderDetailTemp = await _context.OrderDetailsTemp.FindAsync(id);
+            if (orderDetailTemp == null) { return; }
+
+            _context.OrderDetailsTemp.Remove(orderDetailTemp);
             await _context.SaveChangesAsync();
         }
 
